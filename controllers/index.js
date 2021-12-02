@@ -18,7 +18,7 @@ exports.resultsAllProduct = function (req, res) {
 }
 
 exports.resultProductById = function (req, res) {
-	let result = products.filter((val) => val.id == req.params.id).map((val) => val)
+	let result = products.find((val) => val.id == req.params.id)
 	return res.status(200).json({ code: 200, product: result })
 }
 
