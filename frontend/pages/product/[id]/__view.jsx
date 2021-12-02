@@ -7,30 +7,30 @@ function ProductDetailView(props) {
 			<div className='flex flex-row items-center justify-center transform translate-y-8'>
 				<div className='flex flex-col w-6/12 p-3 '>
 					<div className='flex flex-row items-center justify-center '>
-						<img src={props.product.image} className='w-4/12 h-90' />
+						<img src={props.product['image']} className='w-4/12 h-90' />
 					</div>
 					<ul className='p-2 mt-3'>
 						<li className='w-full p-1 text-gray-500 rounded-sm'>
 							<strong className='text-md'>Name:</strong>
-							<p className='mt-1 text-sm'>{props.product.title}</p>
+							<p className='mt-1 text-sm'>{props.product['title']}</p>
 						</li>
 						<li className='w-full p-1 my-3 text-gray-500 rounded-sm'>
 							<strong className='text-md'>Category:</strong>
-							<p className='mt-1 text-sm'>{props.product.category}</p>
+							<p className='mt-1 text-sm'>{props.product['category']}</p>
 						</li>
 						<li className='w-full p-1 my-3 text-gray-500 rounded-sm'>
 							<strong className='text-md'>Price:</strong>
-							<p className='mt-1 text-sm'>{toRupiah(String(props.product.price))}</p>
+							<p className='mt-1 text-sm'>{toRupiah(String(props.product['price']))}</p>
 						</li>
 						<li className='w-full p-1 my-3 text-gray-500 rounded-sm'>
 							<strong className='text-md'> Description:</strong>
-							<p className='mt-1 text-sm'>{props.product.description}</p>
+							<p className='mt-1 text-sm'>{props.product['description']}</p>
 						</li>
 					</ul>
 					<div className='flex flex-row items-center justify-between'>
 						<button
 							className='h-10 mt-3 text-xl font-normal text-white bg-blue-600 rounded-sm w-52'
-							onClick={() => props.handleDecrement(props.product.id)}
+							onClick={() => props.handleDecrement(props.product['id'])}
 							disabled={props.count < 1 ? true : false}>
 							-
 						</button>

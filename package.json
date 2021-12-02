@@ -6,7 +6,7 @@
 	"scripts": {
 		"build": "next build ./frontend",
 		"dev": "nodemon app.js",
-		"prod": "npm run build && node app.js"
+		"start": "npm run build && node app.js"
 	},
 	"repository": {
 		"type": "git",

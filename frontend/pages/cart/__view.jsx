@@ -30,7 +30,7 @@ function CartSummaryView(props) {
 									Subtotal
 								</td>
 								<td className='text-sm font-semibold text-center text-black'>
-									{props.products.length > 0 && toRupiah(props.products.map((val) => val.data.price).reduce((c, v) => c + v, 0))}
+									{toRupiah(props.products.map((val) => val.data.price).reduce((c, v) => c + v, 0))}
 								</td>
 							</tr>
 						</tbody>
