@@ -1,4 +1,4 @@
-import Product from '../pages/product'
+import Product from './product'
 
 function Home() {
 	return (
