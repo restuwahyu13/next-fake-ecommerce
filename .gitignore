@@ -1,0 +1,7 @@
+node_modules
+fake-carts.json
+fake-categories.json
+fake-products.json
+fake-users.json
+frontend/.next
+.env

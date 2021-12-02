@@ -1,0 +1,44 @@
+{
+	"name": "fake-ecommerce",
+	"version": "1.0.0",
+	"description": "technical test fullstack developer pro sehat",
+	"main": "app.js",
+	"scripts": {
+		"build": "next build ./frontend",
+		"dev": "nodemon app.js",
+		"prod": "npm run build && node app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "restuwahyu13"
+	},
+	"keywords": [
+		"ecommerce"
+	],
+	"author": "restuwahyu13",
+	"license": "MIT",
+	"devDependencies": {
+		"autoprefixer": "^10.4.0",
+		"nodemon": "^2.0.15",
+		"postcss": "^8.4.4",
+		"tailwindcss": "^2.2.19"
+	},
+	"dependencies": {
+		"@develoka/angka-rupiah-js": "^1.0.3",
+		"axios": "^0.24.0",
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.19.0",
+		"compression": "^1.7.4",
+		"cors": "^2.8.5",
+		"dotenv": "^10.0.0",
+		"express": "^4.17.1",
+		"express-validator": "^6.13.0",
+		"helmet": "^4.6.0",
+		"is-any-type": "0.0.4",
+		"jsonwebtoken": "^8.5.1",
+		"morgan": "^1.10.0",
+		"next": "^12.0.4",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2"
+	}
+}
