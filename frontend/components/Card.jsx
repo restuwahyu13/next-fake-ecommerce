@@ -46,7 +46,7 @@ function Card(props) {
 														type='number'
 														ref={props.quantity}
 														className='w-6 mx-1 mt-3 text-center border border-gray-300 outline-none'
-														defaultValue={props.count}
+														value={props.count}
 													/>
 													<button
 														className='mt-3 text-sm font-normal text-white bg-blue-600 rounded-sm w-7 h-7'

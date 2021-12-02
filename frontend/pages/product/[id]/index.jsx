@@ -15,14 +15,14 @@ function ProductDetail() {
 	const [count, setCount] = useState(0)
 
 	useEffect(() => {
-		if (router.query !== undefined) {
-			fetchData()
+		if (router.query.id !== undefined) {
+			fetchData(router.query.id)
 		}
-	}, [])
+	}, [router.query.id])
 
-	const fetchData = async () => {
+	const fetchData = async (id) => {
 		try {
-			const res = await axios.get(`/api/v1/product/${1}`)
+			const res = await axios.get(`/api/v1/product/${id}`)
 			setLoading(true)
 
 			setProduct(res.data.product)
@@ -76,10 +76,10 @@ function ProductDetail() {
 	}
 
 	const sumPrice = () => {
-		const parse = JSON.parse(localStorage.get(products))
+		const parse = JSON.parse(localStorage.get('products'))
 
 		if (parse != null) {
-			const prices = items.map((val) => val.data.price)
+			const prices = parse.map((val) => val.data.price)
 			const subTotal = prices.flat(Infinity).reduce((current, val) => current + val, 0)
 			const countItems = prices.flat(Infinity).length
 

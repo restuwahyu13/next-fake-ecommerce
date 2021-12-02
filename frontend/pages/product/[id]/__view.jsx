@@ -7,7 +7,7 @@ function ProductDetailView(props) {
 			<div className='flex flex-row items-center justify-center transform translate-y-8'>
 				<div className='flex flex-col w-6/12 p-3 '>
 					<div className='flex flex-row items-center justify-center '>
-						<img src='https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg' className='w-4/12 h-90' />
+						<img src={props.product.image} className='w-4/12 h-90' />
 					</div>
 					<ul className='p-2 mt-3'>
 						<li className='w-full p-1 text-gray-500 rounded-sm'>

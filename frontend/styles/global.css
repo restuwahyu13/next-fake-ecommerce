@@ -13,3 +13,11 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
 	-moz-appearance: textfield;
 }
+
+table,
+th,
+td {
+	border: 1px solid rgb(196, 195, 195);
+	border-collapse: collapse;
+	padding: 5px;
+}

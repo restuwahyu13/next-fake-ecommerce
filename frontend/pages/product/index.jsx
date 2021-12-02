@@ -63,6 +63,7 @@ function Product() {
 				}
 			}
 		}
+		localStorage.set('countItems', 1)
 	}
 
 	const handleIncrement = (id) => {
@@ -108,12 +109,10 @@ function Product() {
 		const parse = JSON.parse(localStorage.get(products))
 
 		if (parse != null) {
-			const prices = items.map((val) => val.data.price)
+			const prices = parse.map((val) => val.data.price)
 			const subTotal = prices.flat(Infinity).reduce((current, val) => current + val, 0)
-			const countItems = prices.flat(Infinity).length
 
 			localStorage.set('subTotal', subTotal)
-			localStorage.set('countItems', countItems)
 		}
 	}
 
