@@ -3,7 +3,7 @@ import HeaderLayout from '../layouts/Header'
 
 function NextApp({ Component, pageProps }) {
 	return (
-		<HeaderLayout {...pageProps}>
+		<HeaderLayout>
 			<Component {...pageProps} />
 		</HeaderLayout>
 	)

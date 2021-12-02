@@ -19,8 +19,6 @@ function CartSummary() {
 		return products
 	}, [products])
 
-	console.log(newProducts)
-
 	return createElement(CartSummaryView, {
 		products: newProducts
 	})

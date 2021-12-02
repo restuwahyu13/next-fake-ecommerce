@@ -9,8 +9,6 @@ function ProductDetail() {
 	const router = useRouter()
 
 	const [product, setProduct] = useState({})
-	const [loading, setLoading] = useState(false)
-	const [disableBuyButton, setDisabledBuyButton] = useState({ id: 0, disabled: false })
 	const quantity = useRef(null)
 	const [count, setCount] = useState(0)
 
@@ -23,10 +21,7 @@ function ProductDetail() {
 	const fetchData = async (id) => {
 		try {
 			const res = await axios.get(`/api/v1/product/${id}`)
-			setLoading(true)
-
 			setProduct(res.data.product)
-			setTimeout(() => setLoading(false), 1000)
 		} catch (e) {
 			console.error(e)
 		}
@@ -90,11 +85,8 @@ function ProductDetail() {
 
 	return createElement(ProductDetailView, {
 		product: newProduct,
-		loading,
 		count,
-		setCount,
 		quantity,
-		disableBuyButton,
 		handleIncrement,
 		handleDecrement
 	})
