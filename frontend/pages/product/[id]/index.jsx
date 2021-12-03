@@ -8,6 +8,7 @@ import ProductDetailView from './__view'
 function ProductDetail() {
 	const router = useRouter()
 
+	const [accessToken, setAccessToken] = useState('')
 	const [product, setProduct] = useState({})
 	const quantity = useRef(null)
 	const [count, setCount] = useState(0)
@@ -15,6 +16,11 @@ function ProductDetail() {
 	useEffect(() => {
 		if (router.query.id !== undefined) {
 			fetchData(router.query.id)
+		}
+
+		const accessToken = localStorage.get('accessToken')
+		if (accessToken != null) {
+			setAccessToken(accessToken)
 		}
 	}, [router.query.id])
 
@@ -26,6 +32,10 @@ function ProductDetail() {
 			console.error(e)
 		}
 	}
+
+	const newAccessToken = useMemo(() => {
+		return accessToken
+	}, [accessToken])
 
 	const newProduct = useMemo(() => {
 		return product
@@ -85,6 +95,7 @@ function ProductDetail() {
 
 	return createElement(ProductDetailView, {
 		product: newProduct,
+		accessToken: newAccessToken,
 		count,
 		quantity,
 		handleIncrement,
