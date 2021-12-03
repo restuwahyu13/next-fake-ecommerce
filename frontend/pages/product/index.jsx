@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { createElement, useState, useEffect, useMemo, useRef } from 'react'
 import axios from 'axios'
 import * as localStorage from 'local-storage'
+import { toast } from 'react-toastify'
 
 import ProductView from './__view'
 
@@ -42,6 +43,15 @@ function Product() {
 	}
 
 	const handleClickBuy = (id) => {
+		toast.success('Add to cart success', {
+			position: 'top-right',
+			autoClose: 2000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: false,
+			progress: undefined
+		})
 		setDisabledBuyButton({ id, disabled: true })
 
 		const products = []

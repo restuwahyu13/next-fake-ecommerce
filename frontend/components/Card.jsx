@@ -1,8 +1,10 @@
 import toRupiah from '@develoka/angka-rupiah-js'
+import { ToastContainer } from 'react-toastify'
 
 function Card(props) {
 	return (
 		<div>
+			<ToastContainer />
 			<div className='flex flex-row items-center justify-center transform translate-y-20'>
 				<div className='grid w-10/12 h-auto grid-cols-4 gap-1'>
 					{props.loading == false &&
@@ -17,14 +19,13 @@ function Card(props) {
 										<span className='mt-3 text-sm font-semibold text-gray-700 '>{val.title}</span>
 										<span className='mt-2 text-sm font-normal text-gray-600'>{toRupiah(val.price)}</span>
 										<div className='flex flex-row items-center justify-between mt-2'>
-											{props.disableBuyButton.disabled == false && (
-												<button
-													className='w-20 p-2 mt-3 text-sm font-normal text-white bg-blue-600 rounded-md'
-													onClick={() => props.handleClickBuy(val.id)}>
-													Buy
-												</button>
-											)}
-											{props.disableBuyButton.disabled == true && val.id != props.disableBuyButton.id && (
+											<button
+												className='w-20 p-2 mt-3 text-sm font-normal text-white bg-blue-600 rounded-md'
+												onClick={() => props.handleClickBuy(val.id)}>
+												Buy
+											</button>
+
+											{/* {props.disableBuyButton.disabled == true && val.id != props.disableBuyButton.id && (
 												<button
 													className='w-20 p-2 mt-3 text-sm font-normal text-white bg-blue-600 rounded-md'
 													onClick={() => {
@@ -54,7 +55,7 @@ function Card(props) {
 														+
 													</button>
 												</div>
-											)}
+											)} */}
 											<a
 												href='/product'
 												className='inline-block w-20 p-2 mt-3 text-xs font-normal text-gray-500 border border-blue-600 rounded-md outline-none'>
