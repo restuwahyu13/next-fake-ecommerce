@@ -10,13 +10,14 @@ function Product() {
 	const router = useRouter()
 
 	const [products, setProducts] = useState([])
+	const [orderItems, setOrderItems] = useState([])
 	const [loading, setLoading] = useState(false)
 	const [disableBuyButton, setDisabledBuyButton] = useState({ id: 0, disabled: false })
 	const quantity = useRef(null)
 	const [count, setCount] = useState(0)
 
 	useEffect(() => {
-		fetchData('api/v1/product')
+		fetchData(`/api/v1/product?category=${router.query.category}`)
 	}, [])
 
 	const fetchData = async (url) => {
@@ -35,10 +36,14 @@ function Product() {
 		return products
 	}, [products])
 
+	const countProduct = useMemo(() => {
+		return localStorage.get('products') != null ? JSON.parse(localStorage.get('products')).length : orderItems.length
+	}, [JSON.parse(localStorage.get('products'))])
+
 	const handleClickFilter = (value = '') => {
 		if (value != '') {
-			router.push(`/product/?category=${value}`)
-			fetchData(`/api/v1/product/?category=${value}`)
+			router.push(`/product/list/?category=${value}`)
+			fetchData(`/api/v1/product?category=${value}`)
 		}
 	}
 
@@ -76,6 +81,7 @@ function Product() {
 					}
 				}
 			}
+			setOrderItems(products)
 		} else {
 			router.push('/auth/login')
 		}
@@ -118,6 +124,9 @@ function Product() {
 		}
 	}
 
+	const handleCart = () => router.push('/cart')
+	const handleLogin = () => router.push('/auth/login')
+
 	return createElement(ProductView, {
 		products: newProducts,
 		loading,
@@ -125,10 +134,13 @@ function Product() {
 		setCount,
 		quantity,
 		disableBuyButton,
+		countProduct,
 		handleClickFilter,
 		handleClickBuy,
 		handleIncrement,
-		handleDecrement
+		handleDecrement,
+		handleCart,
+		handleLogin
 	})
 }
 
