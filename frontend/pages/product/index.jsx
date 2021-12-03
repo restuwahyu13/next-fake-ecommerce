@@ -43,37 +43,43 @@ function Product() {
 	}
 
 	const handleClickBuy = (id) => {
-		toast.success('Add to cart success', {
-			position: 'top-right',
-			autoClose: 2000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: false,
-			progress: undefined
-		})
-		setDisabledBuyButton({ id, disabled: true })
+		const accessToken = localStorage.get('accessToken')
 
-		const products = []
-		const checkStorage = JSON.parse(localStorage.get('products'))
-		const findProduct = newProducts.find((val) => val.id == id)
+		if (accessToken != null) {
+			toast.success('Add to cart success', {
+				position: 'top-right',
+				autoClose: 2000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: false,
+				progress: undefined
+			})
+			setDisabledBuyButton({ id, disabled: true })
 
-		if (checkStorage == null) {
-			localStorage.set(`products`, JSON.stringify([{ quantity: 1, data: findProduct }]))
-		} else {
-			const parse = JSON.parse(localStorage.get('products'))
-			if (parse != null) {
-				const checkProductExist = parse.find((val) => String(val.data.id).match(String(id)))
-				if (checkProductExist === undefined) {
-					parse.forEach((val) => products.push(val))
-					const checkOldProductExist = products.find((val) => String(val.data.id).match(String(id)))
+			const products = []
+			const checkStorage = JSON.parse(localStorage.get('products'))
+			const findProduct = newProducts.find((val) => val.id == id)
 
-					if (checkOldProductExist === undefined) products.push({ quantity: 1, data: findProduct })
-					localStorage.set(`products`, JSON.stringify(products))
+			if (checkStorage == null) {
+				localStorage.set(`products`, JSON.stringify([{ quantity: 1, data: findProduct }]))
+			} else {
+				const parse = JSON.parse(localStorage.get('products'))
+				if (parse != null) {
+					const checkProductExist = parse.find((val) => String(val.data.id).match(String(id)))
+					if (checkProductExist === undefined) {
+						parse.forEach((val) => products.push(val))
+						const checkOldProductExist = products.find((val) => String(val.data.id).match(String(id)))
+
+						if (checkOldProductExist === undefined) products.push({ quantity: 1, data: findProduct })
+						localStorage.set(`products`, JSON.stringify(products))
+					}
 				}
 			}
+			localStorage.set('countItems', 1)
+		} else {
+			router.push('/auth/login')
 		}
-		localStorage.set('countItems', 1)
 	}
 
 	const handleIncrement = (id) => {

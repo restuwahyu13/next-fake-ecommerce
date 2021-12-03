@@ -6,6 +6,7 @@ import * as localStorageServer from 'local-storage'
 function Header(props) {
 	const router = useRouter()
 	const handleCart = () => router.push('/cart')
+	const handleLogin = () => router.push('/auth/login')
 
 	const countProduct = useMemo(() => {
 		return localStorageServer.get('products') != null ? JSON.parse(localStorageServer.get('products')).length : 0
@@ -25,7 +26,9 @@ function Header(props) {
 								{countProduct}
 							</span>
 						</button>
-						<button className='p-2 mx-2 text-xs font-semibold text-white bg-blue-600 rounded-md'>Masuk</button>
+						<button className='p-2 mx-2 text-xs font-semibold text-white bg-blue-600 rounded-md' onClick={handleLogin}>
+							Masuk
+						</button>
 						<button className='p-2 mx-2 text-xs font-semibold text-white bg-blue-600 rounded-md'>Daftar</button>
 					</div>
 				</div>
