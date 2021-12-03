@@ -1,13 +1,11 @@
 import Link from 'next/link'
 
-import Authentication from '../../../components/Authentication'
 import Filter from '../../../components/Filter'
 import CardProduct from '../../../components/Card'
 
 function ProductView(props) {
 	return (
 		<>
-			<Authentication>
 				<div className='w-full py-2 mt-3 bg-white h-14'>
 					<div className='flex items-center justify-between '>
 						<Link href='/'>
@@ -48,7 +46,6 @@ function ProductView(props) {
 				</div>
 				<Filter handler={props.handleClickFilter} />
 				<CardProduct {...props} />
-			</Authentication>
 		</>
 	)
 }
