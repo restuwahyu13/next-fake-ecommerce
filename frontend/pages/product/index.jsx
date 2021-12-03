@@ -67,16 +67,15 @@ function Product() {
 				const parse = JSON.parse(localStorage.get('products'))
 				if (parse != null) {
 					const checkProductExist = parse.find((val) => String(val.data.id).match(String(id)))
+
 					if (checkProductExist === undefined) {
 						parse.forEach((val) => products.push(val))
 						const checkOldProductExist = products.find((val) => String(val.data.id).match(String(id)))
-
 						if (checkOldProductExist === undefined) products.push({ quantity: 1, data: findProduct })
 						localStorage.set(`products`, JSON.stringify(products))
 					}
 				}
 			}
-			localStorage.set('countItems', 1)
 		} else {
 			router.push('/auth/login')
 		}
@@ -96,7 +95,6 @@ function Product() {
 					return val
 				})
 				localStorage.set(`products`, JSON.stringify(items))
-				sumPrice()
 			}
 		}
 	}
@@ -116,19 +114,7 @@ function Product() {
 					return val
 				})
 				localStorage.set(`products`, JSON.stringify(items))
-				sumPrice()
 			}
-		}
-	}
-
-	const sumPrice = () => {
-		const parse = JSON.parse(localStorage.get(products))
-
-		if (parse != null) {
-			const prices = parse.map((val) => val.data.price)
-			const subTotal = prices.flat(Infinity).reduce((current, val) => current + val, 0)
-
-			localStorage.set('subTotal', subTotal)
 		}
 	}
 
