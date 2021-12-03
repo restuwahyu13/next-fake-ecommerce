@@ -11,6 +11,7 @@ function Product() {
 
 	const [products, setProducts] = useState([])
 	const [orderItems, setOrderItems] = useState([])
+	const [accessToken, setAccessToken] = useState('')
 	const [loading, setLoading] = useState(false)
 	const [disableBuyButton, setDisabledBuyButton] = useState({ id: 0, disabled: false })
 	const quantity = useRef(null)
@@ -18,6 +19,11 @@ function Product() {
 
 	useEffect(() => {
 		fetchData(`/api/v1/product?category=${router.query.category}`)
+		const accessToken = localStorage.get('accessToken')
+
+		if (accessToken != null) {
+			setAccessToken(accessToken)
+		}
 	}, [])
 
 	const fetchData = async (url) => {
@@ -35,6 +41,10 @@ function Product() {
 	const newProducts = useMemo(() => {
 		return products
 	}, [products])
+
+	const newAccessToken = useMemo(() => {
+		return accessToken
+	}, [accessToken])
 
 	const countProduct = useMemo(() => {
 		return localStorage.get('products') != null ? JSON.parse(localStorage.get('products')).length : orderItems.length
@@ -129,6 +139,7 @@ function Product() {
 
 	return createElement(ProductView, {
 		products: newProducts,
+		accessToken: newAccessToken,
 		loading,
 		count,
 		setCount,
