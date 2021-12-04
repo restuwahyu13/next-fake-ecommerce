@@ -133,7 +133,7 @@ function Home() {
 		}
 	}
 
-	const handleCart = () => router.push('/cart')
+	const handleCart = () => (newAccessToken != '' ? router.push('/cart') : router.push('/auth/login'))
 	const handleLogin = () => router.push('/auth/login')
 
 	return createElement(HomeView, {
